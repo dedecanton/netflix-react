@@ -10,6 +10,7 @@ export default () => {
 
   const [movieList, setMovieList] = useState([]);
   const [featuredData, setFeaturedData] = useState(null)
+  const [blackHeader, setBlackHeader] = useState(false)
 
   useEffect(() => {
     const loadAll = async () => {
@@ -20,7 +21,7 @@ export default () => {
 
       // featuredMovie
       let originals = list.filter(items => items.slug === 'originals')
-      let randomChosen = Math.floor(Math.random()*(originals[0].items.results.length - 1))
+      let randomChosen = Math.floor(Math.random() * (originals[0].items.results.length - 1))
       let chosen = originals[0].items.results[randomChosen]
       let chosenInfo = await Tmdb.getMovieInfo(chosen.id, 'tv')
       setFeaturedData(chosenInfo)
@@ -29,14 +30,25 @@ export default () => {
     loadAll();
   }, []);
 
+
+  useEffect(() => {
+    const scrollListener = () => window.scrollY > 10 ? setBlackHeader(true) : setBlackHeader(false)
+
+    window.addEventListener('scroll', scrollListener)
+
+    return () => {
+      window.removeEventListener('scroll', scrollListener)
+    }
+  })
+
   return (
     <div className='page'>
 
-      <Header/>
+      <Header black={blackHeader} />
 
-    {featuredData && 
-      <FeaturedMovie item={featuredData}/>
-    }
+      {featuredData &&
+        <FeaturedMovie item={featuredData} />
+      }
 
       <section className='lists'>
         {movieList.map((item, key) => (
