@@ -57,12 +57,17 @@ export default () => {
       </section>
 
       <footer>
-        Feito por André Canton<br/>
-        Direitos de imagem para Netflix<br/>
-        Dados pegos do site Themoviedb.org<br/>
+        Feito por André Canton<br />
+        Direitos de imagem para Netflix<br />
+        Dados pegos do site Themoviedb.org<br />
       </footer>
 
-    </div>
+      {movieList.length <= 0 &&
+        < div className='loading'>
+          <img src='https://media.filmelier.com/noticias/br/2020/03/Netflix_LoadTime.gif' />
+        </div>
+      }
+    </div >
   )
 
 }
