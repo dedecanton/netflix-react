@@ -56,6 +56,12 @@ export default () => {
         ))}
       </section>
 
+      <footer>
+        Feito por André Canton<br/>
+        Direitos de imagem para Netflix<br/>
+        Dados pegos do site Themoviedb.org<br/>
+      </footer>
+
     </div>
   )
 
