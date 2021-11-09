@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Tmdb from './Tmdb';
-import MovieRow from './components/MovieRow';
-import FeaturedMovie from './components/FeaturedMovie';
+import Tmdb from './components/Tmdb/';
+import MovieRow from './components/MovieRow/';
+import FeaturedMovie from './components/FeaturedMovie/';
+import Header from './components/Header/';
 import './App.css'
 
 
@@ -30,6 +31,8 @@ export default () => {
 
   return (
     <div className='page'>
+
+      <Header/>
 
     {featuredData && 
       <FeaturedMovie item={featuredData}/>
